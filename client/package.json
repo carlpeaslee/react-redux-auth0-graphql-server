@@ -1,0 +1,39 @@
+{
+  "name": "auth-starter",
+  "version": "0.0.1",
+  "private": true,
+  "devDependencies": {
+    "react-scripts": "0.4.1"
+  },
+  "dependencies": {
+    "auth0-lock": "^10.2.2",
+    "bootstrap": "^3.3.5",
+    "classnames": "^2.2.5",
+    "express": "^4.14.0",
+    "express-graphql": "^0.5.4",
+    "foreman": "^2.0.0",
+    "graphiql": "^0.7.8",
+    "graphql": "^0.7.0",
+    "isomorphic-fetch": "^2.2.1",
+    "jwt-decode": "^2.0.1",
+    "react": "^15.3.1",
+    "react-bootstrap": "^0.30.0-rc.1",
+    "react-dom": "^15.3.1",
+    "react-redux": "^4.4.5",
+    "react-redux-form": "^0.14.6",
+    "react-router": "^2.8.0",
+    "redux": "^3.6.0",
+    "redux-logger": "^2.6.1",
+    "redux-thunk": "^2.1.0"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test --env=jsdom",
+    "eject": "react-scripts eject"
+  },
+  "eslintConfig": {
+    "extends": "./node_modules/react-scripts/config/eslint.js"
+  },
+  "proxy": "http://localhost:3001/"
+}

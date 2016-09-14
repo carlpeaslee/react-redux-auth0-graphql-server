@@ -20,21 +20,7 @@ export class Home extends React.Component {
 
   render(){
 
-    const authButton = () => {
-      if (!this.props.token) {
-        return (
-          <LoginButton
-            auth={this.props.auth}
-          />
-        )
-      } else {
-        return (
-          <LogoutButton
-            auth={this.props.auth}
-          />
-        )
-      }
-    }
+
     return (
       <div>
         <h2>Home</h2>

@@ -1,8 +1,9 @@
-import React, { PropTypes as T } from 'react'
+import React, { PropTypes, Component} from 'react'
+import {Navbar, Nav, NavItem, NavDropdown, MenuItem, Grid} from 'react-bootstrap'
 
-export class Container extends React.Component {
+class Container extends Component {
   static contextTypes = {
-    router: T.object
+    router: PropTypes.object
   }
 
   render() {
@@ -14,16 +15,31 @@ export class Container extends React.Component {
     }
 
     return (
-      <div>
-        <h2>
-          <img src="https://cdn.auth0.com/styleguide/1.0.0/img/badge.svg" alt="a badge"/>
-        </h2>
-        <div>
+      <Grid>
+        <Navbar>
+          <Navbar.Header>
+            <Navbar.Brand>
+              <a href="#">Carl Peaslee</a>
+            </Navbar.Brand>
+          </Navbar.Header>
+          <Nav>
+            <NavItem eventKey={1} href="#">Link</NavItem>
+            <NavItem eventKey={2} href="#">Link</NavItem>
+            <NavDropdown eventKey={3} title="Dropdown" id="basic-nav-dropdown">
+              <MenuItem eventKey={3.1}>Action</MenuItem>
+              <MenuItem eventKey={3.2}>Another action</MenuItem>
+              <MenuItem eventKey={3.3}>Something else here</MenuItem>
+              <MenuItem divider />
+              <MenuItem eventKey={3.3}>Separated link</MenuItem>
+            </NavDropdown>
+          </Nav>
+        </Navbar>
+        <main>
           {children}
-        </div>
-      </div>
+        </main>
+      </Grid>
     )
   }
 }
 
-export default Container;
+export default Container

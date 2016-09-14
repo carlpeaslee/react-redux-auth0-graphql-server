@@ -1,4 +1,5 @@
 import fetch from 'isomorphic-fetch'
+import store from '../store'
 
 export const REQUEST_BLOG_CONTENT = 'REQUEST_BLOG_CONTENT'
 export const RECEIVED_BLOG_CONTENT = 'RECEIVED_BLOG_CONTENT'
@@ -11,11 +12,16 @@ export function updateBlogContent() {
   const body = JSON.stringify({
     query:'{blogPosts(count:"2"){title,author,publicationDate,featuredImage,content}}',
   })
+
+  let token = store.getState().auth.token
+  console.log(token)
+
   const options = {
     method: 'POST',
     headers: {
       Accept: 'application/json',
       'content-type': 'application/json',
+      'Authorization': 'Bearer ' + token,
     },
     body: body,
     credentials: 'include'
@@ -54,12 +60,14 @@ export function createNewBlogPost(blogPostEditorForm) {
     query: 'mutation {addBlogPost(title:"'+blogPostEditorForm.title+'", author: "'+blogPostEditorForm.more+'", publicationDate: "'+blogPostEditorForm.publicationDate+'", featuredImage: "'+blogPostEditorForm.featuredImage+'", content:"'+blogPostEditorForm.content+'")}'
   })
 
+  let token = localStorage.getItem('id_token')
 
   const options = {
     method: 'POST',
     headers: {
       Accept: 'application/json',
       'content-type': 'application/json',
+      'Authorization': 'Bearer ' + token,
     },
     body: body,
     credentials: 'include'

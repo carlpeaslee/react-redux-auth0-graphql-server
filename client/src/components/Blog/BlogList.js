@@ -1,8 +1,6 @@
 import React, {Component, PropTypes} from 'react'
 import BlogPost from './BlogPost'
 
-
-
 class BlogList extends Component {
   static propTypes = {
     blogContent: PropTypes.array.isRequired,
@@ -12,13 +10,11 @@ class BlogList extends Component {
   }
   render() {
     const blogContent = this.props.blogContent
-    console.log("7", this.props)
-    console.log("8", blogContent)
     function blogPopulator() {
       const blogs = []
-
       blogContent.forEach((post, index, blogContent) => {
-        blogs.concat(
+        console.log(blogs)
+        blogs.push(
           <BlogPost
             key={Math.random()}
             title={post.title}

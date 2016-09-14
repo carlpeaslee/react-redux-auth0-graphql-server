@@ -1,12 +1,22 @@
 import express from 'express'
 import expressGraphQL from 'express-graphql'
 import schema from './data/schema'
+import jwt from 'express-jwt'
 
 const app = express();
 
 app.set('port', (process.env.API_PORT || 3001));
 
-app.use('/graphql', expressGraphQL((req) => {
+var jwtCheck = jwt({
+  secret: new Buffer('I0pUctOoTBPPTFVPDy-PPrKahtgumFhqQbQBkZKT-CT9TnLw8OKUA-QJiP7KnRwR', 'base64'),
+  audience: 'sSWCy6E3FS5roIKe7fAoC8PyrcQePDsA',
+  credentialsRequired: false, 
+});
+
+
+
+app.use('/graphql', jwtCheck, expressGraphQL((req) => {
+  console.log(req.user)
   return {
     schema,
     graphiql: true,

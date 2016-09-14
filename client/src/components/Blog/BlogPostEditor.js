@@ -1,4 +1,4 @@
-import React, { Component, PropTypes } from 'react'
+import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { Form, Field } from 'react-redux-form'
 
@@ -13,7 +13,7 @@ class BlogPostEditor extends Component {
     super()
   }
   render() {
-    let { blogPostEditor } = this.props
+    // let { blogPostEditor } = this.props
     return (
       <div>
         <Form

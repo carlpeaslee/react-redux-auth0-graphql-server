@@ -2,7 +2,7 @@ import React, { Component, PropTypes } from 'react'
 import { connect } from 'react-redux'
 
 import BlogList from './BlogList'
-import BlogPostEditor from './BlogList'
+import BlogPostEditor from './BlogPostEditor'
 import {updateBlogContent} from '../../actions/blog'
 // import withStyles from 'isomorphic-style-loader/lib/withStyles'
 

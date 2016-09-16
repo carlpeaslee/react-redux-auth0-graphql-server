@@ -1,7 +1,9 @@
 import React from 'react'
+import LoginButton from './LoginButton'
+import LogoutButton from './LogoutButton'
 
 
-function authButton(props) {
+function AuthButton(props) {
   if (!props.token) {
     return (
       <LoginButton
@@ -17,4 +19,4 @@ function authButton(props) {
   }
 }
 
-export default BlogPost
+export default AuthButton

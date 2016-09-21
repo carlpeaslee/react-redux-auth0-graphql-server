@@ -1,26 +1,20 @@
-export const SET_AUTH_TOKEN = 'SET_AUTH_TOKEN'
-export const SET_PROFILE = 'SET_PROFILE'
-export const REDUX_LOGOUT = 'REDUX_LOGOUT'
+import Auth0Lock from 'auth0-lock'
+import {auth0id, auth0domain} from '../config'
 
+// import store from '../store'
 
-export function setAuthToken(token) {
+const lockOptions = {
+  container: 'authDiv'
+}
+
+const lock = new Auth0Lock(auth0id, auth0domain, lockOptions)
+
+export const SHOW_LOCK = "SHOW_LOCK"
+export function showLock() {
+  lock.show()
   return {
-    type: SET_AUTH_TOKEN,
-    token
+    type: SHOW_LOCK
   }
 }
 
-export function setProfile(profile) {
-  return {
-    type: SET_PROFILE,
-    profile
-  }
-}
-
-export function reduxLogout() {
-  return {
-    type: REDUX_LOGOUT,
-    token: undefined,
-    profile: {}
-  }
-}
+export const RECEIVE_AUTHENTICATION = "RECEIVE_AUTHENTICATION"

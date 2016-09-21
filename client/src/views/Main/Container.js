@@ -19,7 +19,6 @@ class Container extends Component {
       <Grid>
         <Row>
           <Navigation
-            auth={props.auth}
           />
         </Row>
         <main>

@@ -2,8 +2,8 @@ import { EventEmitter } from 'events'
 import { isTokenExpired } from './jwtHelper'
 import Auth0Lock from 'auth0-lock'
 
-import store from '../store'
-import {setAuthToken, setProfile, reduxLogout} from '../actions/auth'
+// import store from '../store'
+// import {setAuthToken, setProfile, reduxLogout} from '../actions/auth'
 
 export default class AuthService extends EventEmitter {
   constructor(clientId, domain) {
@@ -43,7 +43,7 @@ export default class AuthService extends EventEmitter {
 
   loggedIn(){
     console.log('loggedIn was called')
-    
+
     // Checks if there is a saved token and it's still valid
     const token = this.getToken()
     return !!token && !isTokenExpired(token)
@@ -53,8 +53,8 @@ export default class AuthService extends EventEmitter {
     const stringProfile = JSON.stringify(profile)
     // Saves profile data to localStorage
     localStorage.setItem('profile', stringProfile)
-    console.log(profile)
-    store.dispatch(setProfile(profile))
+    console.log('setProfile',   profile)
+    // store.dispatch(setProfile(profile))
     // Triggers profile_updated event to update the UI
     // this.emit('profile_updated', profile)
   }
@@ -68,7 +68,7 @@ export default class AuthService extends EventEmitter {
   setToken(idToken){
     // Saves user token to localStorage
     localStorage.setItem('id_token', idToken)
-    store.dispatch(setAuthToken(idToken))
+    // store.dispatch(setAuthToken(idToken))
   }
 
   getToken(){
@@ -80,6 +80,6 @@ export default class AuthService extends EventEmitter {
     // Clear user token and profile data from localStorage
     localStorage.removeItem('id_token');
     localStorage.removeItem('profile');
-    store.dispatch(reduxLogout())
+    // store.dispatch(reduxLogout())
   }
 }

@@ -2,6 +2,7 @@ import React from 'react'
 import {Navbar, Nav, NavItem, NavDropdown, MenuItem} from 'react-bootstrap'
 import {Link} from 'react-router'
 import AuthButton from './AuthButton'
+import AuthDiv from './AuthDiv'
 
 function Navigation(props) {
   return (
@@ -24,6 +25,7 @@ function Navigation(props) {
         <AuthButton
           auth={props.auth}
         />
+        <AuthDiv/>
       </Nav>
     </Navbar>
   )

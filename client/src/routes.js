@@ -1,18 +1,15 @@
 import React from 'react'
-import {Route} from 'react-router'
-
-import makeMainRoutes from './views/Main/routes'
+import {Route, IndexRoute} from 'react-router'
+import Template from './views/Main/Template'
+import Home from './views/Main/Home/Home'
 
 export const makeRoutes = () => {
-  const main = makeMainRoutes();
-
   return (
-    <Route path=''>
-      {main}
+    <Route path="/" component={Template}>
+      <IndexRoute component={Home} />
+      <Route path="/admin" component={Home}/>
     </Route>
   )
 }
-
-
 
 export default makeRoutes

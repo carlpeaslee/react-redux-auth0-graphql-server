@@ -2,8 +2,8 @@ import { EventEmitter } from 'events'
 import { isTokenExpired } from './jwtHelper'
 import Auth0Lock from 'auth0-lock'
 
-// import store from '../store'
-// import {setAuthToken, setProfile, reduxLogout} from '../actions/auth'
+import store from '../store'
+import {setAuthToken} from '../actions/auth'
 
 export default class AuthService extends EventEmitter {
   constructor(clientId, domain) {
@@ -19,6 +19,8 @@ export default class AuthService extends EventEmitter {
   }
 
   _doAuthentication(authResult){
+    console.log('attempting to do authentication')
+
     // Saves the user token
     this.setToken(authResult.idToken)
     // Async loads the user profile data
@@ -68,7 +70,8 @@ export default class AuthService extends EventEmitter {
   setToken(idToken){
     // Saves user token to localStorage
     localStorage.setItem('id_token', idToken)
-    // store.dispatch(setAuthToken(idToken))
+    //save user token to state
+    store.dispatch(setAuthToken(idToken))
   }
 
   getToken(){

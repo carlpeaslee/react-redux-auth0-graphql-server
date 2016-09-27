@@ -13,7 +13,6 @@ class BlogList extends Component {
     function blogPopulator() {
       const blogs = []
       blogContent.forEach((post, index, blogContent) => {
-        console.log(blogs)
         blogs.push(
           <BlogPost
             key={Math.random()}

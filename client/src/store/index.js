@@ -1,9 +1,9 @@
 import { createStore, applyMiddleware, compose } from 'redux'
 import thunkMiddleware from 'redux-thunk'
-import createLogger from 'redux-logger'
+// import createLogger from 'redux-logger'
 import rootReducer from '../reducers'
 
-const loggerMiddleware = createLogger()
+// const loggerMiddleware = createLogger()
 
 const configureStore = (preloadedState) => {
   return createStore(
@@ -11,7 +11,7 @@ const configureStore = (preloadedState) => {
     preloadedState,
     compose(applyMiddleware(
       thunkMiddleware,
-      loggerMiddleware
+      // loggerMiddleware
       ),
       typeof window === 'object' && typeof window.devToolsExtension !== 'undefined' ? window.devToolsExtension() : f => f
     )

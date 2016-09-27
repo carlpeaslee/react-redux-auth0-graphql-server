@@ -1,5 +1,5 @@
 import fetch from 'isomorphic-fetch'
-import store from '../store'
+// import store from '../store'
 
 export const REQUEST_BLOG_CONTENT = 'REQUEST_BLOG_CONTENT'
 export const RECEIVED_BLOG_CONTENT = 'RECEIVED_BLOG_CONTENT'
@@ -13,8 +13,7 @@ export function updateBlogContent() {
     query:'{blogPosts(count:"2"){title,author,publicationDate,featuredImage,content}}',
   })
 
-  let token = store.getState().auth.token
-  console.log(token)
+  let token = 'dummyToken'
 
   const options = {
     method: 'POST',

@@ -7,9 +7,12 @@ import App from './containers/App/App'
 
 import {browserHistory} from 'react-router'
 
+
 import makeRoutes from './routes'
 
-const routes = makeRoutes()
+const routes = makeRoutes();
+
+
 
 const mountNode = document.getElementById('root')
 

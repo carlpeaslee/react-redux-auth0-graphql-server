@@ -4,7 +4,7 @@ import LogoutButton from '../../components/LogoutButton'
 
 import {connect} from 'react-redux'
 
-import {checkLocalStore, showLock, listenForAuthentication} from '../../actions/auth'
+import {checkLocalStore, showLock, listenForAuthentication, logout} from '../../actions/auth'
 
 class AuthContainer extends Component {
   componentWillMount() {
@@ -20,7 +20,9 @@ class AuthContainer extends Component {
       return (
         <div>
           <p>Hi, {this.props.profile.name}!</p>
-          <LogoutButton/>
+          <LogoutButton
+            dLogout={this.props.dLogout}
+          />
         </div>
       )
     } else {
@@ -58,6 +60,9 @@ const mapDispatchToProps = (dispatch) => {
     },
     dCheckLocalStorage: () => {
       dispatch(checkLocalStore())
+    },
+    dLogout: () => {
+      dispatch(logout())
     },
   }
 }

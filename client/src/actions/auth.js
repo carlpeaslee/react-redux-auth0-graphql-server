@@ -14,6 +14,15 @@ const lockOptions = {
 
 export const lock = new Auth0Lock(auth0id, auth0domain, lockOptions)
 
+export const LOGOUT = "LOGOUT"
+export function logout() {
+  localStorage.removeItem('idToken')
+  localStorage.removeItem('profile')
+  return {
+    type: LOGOUT
+  }
+}
+
 export const SHOW_LOCK = "SHOW_LOCK"
 export function showLock() {
   lock.show()

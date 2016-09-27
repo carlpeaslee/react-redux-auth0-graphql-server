@@ -4,7 +4,8 @@ import {
   LISTEN_FOR_AUTHENTICATION,
   GET_PROFILE,
   SET_PROFILE,
-  CHECK_LOCAL_STORAGE
+  CHECK_LOCAL_STORAGE,
+  LOGOUT
 } from '../actions/auth'
 
 const INITIAL_AUTH_STATE = {
@@ -48,6 +49,13 @@ export default function auth(state = INITIAL_AUTH_STATE, action) {
         ...state,
         waitingForProfile: action.waitingForProfile,
         profile: action.profile
+      }
+    }
+    case LOGOUT: {
+      return {
+        ...state,
+        idToken: null,
+        profile: null
       }
     }
     default:

@@ -15,7 +15,7 @@ var jwtCheck = jwt({
 
 
 
-app.use('/graphql', expressGraphQL((req) => {
+app.use('/graphql', jwtCheck, expressGraphQL((req) => {
   console.log(req.user)
   return {
     schema,

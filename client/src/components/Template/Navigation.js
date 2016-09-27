@@ -1,4 +1,5 @@
 import React from 'react'
+import {LinkContainer} from 'react-router-bootstrap'
 import {Navbar, Nav, NavItem, NavDropdown, MenuItem} from 'react-bootstrap'
 import {Link} from 'react-router'
 import AuthContainer from '../../containers/Auth/AuthContainer'
@@ -12,9 +13,9 @@ function Navigation(props) {
         </Navbar.Brand>
       </Navbar.Header>
       <Nav pullLeft>
-        <NavItem href={'/hello'}>
-          Hello{/* <Link to={'/admin'}>Admin</Link> */}
-        </NavItem>
+        <LinkContainer to={'/admin'}>
+          <NavItem>Admin</NavItem>
+        </LinkContainer>
       </Nav>
       <Nav pullRight>
         <NavDropdown title='Auth' id={'auth-dropdown'}>

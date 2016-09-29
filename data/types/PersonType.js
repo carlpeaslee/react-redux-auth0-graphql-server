@@ -2,14 +2,18 @@ import {
   GraphQLObjectType,
   GraphQLID,
   GraphQLString,
-  GraphQLNonNull,
-} from 'graphql';
+  GraphQLList,
+} from 'graphql'
+
+import PermissionsType from './PermissionsType'
+
 
 const PersonType = new GraphQLObjectType({
   name: 'Person',
+  description: 'A user in the database',
   fields: {
     personId: {
-      type: GraphQLString
+      type: GraphQLID
     },
     email: {
       type: GraphQLString
@@ -18,9 +22,9 @@ const PersonType = new GraphQLObjectType({
       type: GraphQLString
     },
     permissions: {
-      type: GraphQLString
+      type: PermissionsType
     },
   }
-});
+})
 
-export default PersonType;
+export default PersonType

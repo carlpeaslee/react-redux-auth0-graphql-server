@@ -17,22 +17,25 @@ var jwtCheck = jwt({
 });
 
 
-import findOnePersonById from './data/queries/findOnePersonById'
+import PermissionsHandler from './data/mutations/PermissionsHandler'
 
-app.use('/graphql', jwtCheck, expressGraphQL((req) => {
-  // console.log(req.user)
-  // console.log(findOnePersonById(req.user.sub))
+function permissionsMiddleware(err, req, res, next){
+  const requesterId = req.user.sub || 'unknown'
+  PermissionsHandler(requesterId).then( (person) => {
+    console.log('person.permissions', person)
+    req.permissions = person.permissions
+    next()
+  })
+}
+
+app.use('/graphql', [jwtCheck, permissionsMiddleware], expressGraphQL((req) => {
   return {
     schema,
     graphiql: true,
-    // context: {
-    //   user: {
-    //     userId: req.user.sub,
-    //   },
-    // },
+    context: {
+      permissions: req.permissions
+    },
     pretty: true
-    // rootValue: { request: req },
-    // pretty: process.env.NODE_ENV !== 'production',
   }
 }));
 

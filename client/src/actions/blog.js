@@ -10,10 +10,11 @@ export const RECEIVED_RESULT_OF_NEW_BLOG_POST = 'RECEIVED_RESULT_OF_NEW_BLOG_POS
 export function updateBlogContent() {
   const graphqlUrl = '/graphql'
   const body = JSON.stringify({
-    query:'{blogPosts(count:"2"){title,author,publicationDate,featuredImage,content}}',
+    query:'{getAllBlogPosts{title,author,publicationDate,featuredImage,content}}',
   })
 
   let idToken = store.getState().auth.idToken
+  console.log(idToken)
 
   const options = {
     method: 'POST',
@@ -31,7 +32,9 @@ export function updateBlogContent() {
     return fetch(graphqlUrl, options).then((res) => {
       return res.json()
     }).then((response) => {
-      dispatch(receivedBlogContent(response.data))
+      let blogPosts = response.data.getAllBlogPosts
+      console.log(blogPosts)
+      dispatch(receivedBlogContent(blogPosts))
     })
   }
 }
@@ -43,10 +46,10 @@ export function requestBlogContent() {
 }
 
 export function receivedBlogContent(response) {
-  const blogContent = response.blogPosts
+
   return {
     type: RECEIVED_BLOG_CONTENT,
-    blogContent,
+    blogContent: response,
     receivedAt: Date.now()
   }
 }
@@ -60,6 +63,7 @@ export function createNewBlogPost(blogPostEditorForm) {
   })
 
   let idToken = store.getState().auth.idToken
+  console.log(idToken)
 
   const options = {
     method: 'POST',

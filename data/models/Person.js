@@ -21,8 +21,8 @@ const Person = db.define('Person', {
   },
 
   permissions: {
-    type: sequelize.ARRAY(sequelize.STRING),
-    defaultValue: ['read'],
+    type: sequelize.ARRAY(sequelize.INTEGER),
+    defaultValue: [1],
     notNull: true,
   },
 

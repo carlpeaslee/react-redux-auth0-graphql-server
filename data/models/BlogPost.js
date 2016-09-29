@@ -1,32 +1,32 @@
-import DataType from 'sequelize';
-import Model from '../sequelize';
+import sequelize from 'sequelize';
+import db from '../db';
 
-const BlogPost = Model.define('BlogPost', {
+const BlogPost = db.define('BlogPost', {
 
   blogPostId: {
-    type: DataType.UUID,
-    defaultValue: DataType.UUIDV1,
+    type: sequelize.UUID,
+    defaultValue: sequelize.UUIDV1,
     primaryKey: true
   },
 
   title: {
-    type: DataType.STRING
+    type: sequelize.STRING
   },
 
   author: {
-    type: DataType.STRING
+    type: sequelize.STRING
   },
 
   publicationDate: {
-    type: DataType.DATE
+    type: sequelize.DATE
   },
 
   featuredImage: {
-    type: DataType.STRING
+    type: sequelize.STRING
   },
 
   content: {
-    type: DataType.TEXT
+    type: sequelize.TEXT
   }
 });
 

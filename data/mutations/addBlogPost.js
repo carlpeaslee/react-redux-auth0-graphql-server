@@ -1,4 +1,3 @@
-import sequelize from '../sequelize'
 import BlogPost from '../models/BlogPost'
 
 

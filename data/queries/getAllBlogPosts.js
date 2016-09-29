@@ -20,7 +20,8 @@ const getAllBlogPosts = {
       type: GraphQLString
     }
   },
-  resolve:  (args) => {
+  resolve:  (source, args, context) => {
+    console.log('getAllBlogPosts, context:' ,context)
     return new Promise( (resolve, reject) => {
       BlogPost.findAll().then( (result, error) => {
         if (error) console.log(error)

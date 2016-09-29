@@ -1,10 +1,10 @@
-import sequelize from '../sequelize';
+import db from '../db'
+import BlogPost from './BlogPost'
+import Person from './Person'
 
-import BlogPost from './BlogPost';
 
 function sync(...args) {
-  return sequelize.sync(...args);
+  return db.sync(...args);
 }
 
 export default { sync };
-export {BlogPost };

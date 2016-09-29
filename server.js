@@ -3,6 +3,9 @@ import expressGraphQL from 'express-graphql'
 import schema from './data/schema'
 import jwt from 'express-jwt'
 
+import db from './data/db'
+
+
 const app = express();
 
 app.set('port', (process.env.API_PORT || 3001));
@@ -14,16 +17,34 @@ var jwtCheck = jwt({
 });
 
 
+import findOnePersonById from './data/queries/findOnePersonById'
 
-app.use('/graphql', expressGraphQL((req) => {
-  console.log(req.user)
+app.use('/graphql', jwtCheck, expressGraphQL((req) => {
+  // console.log(req.user)
+  // console.log(findOnePersonById(req.user.sub))
   return {
     schema,
     graphiql: true,
-    rootValue: { request: req },
+    // context: {
+    //   user: {
+    //     userId: req.user.sub,
+    //   },
+    // },
+    pretty: true
+    // rootValue: { request: req },
     // pretty: process.env.NODE_ENV !== 'production',
   }
 }));
+
+
+
+db
+  .sync()
+  .then(function(err) {
+    console.log('It worked!')
+  }, function (err) {
+    console.log('An error occurred while creating the table:', err)
+  })
 
 
 app.listen(app.get('port'), () => {

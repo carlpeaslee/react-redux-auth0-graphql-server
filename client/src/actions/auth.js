@@ -82,8 +82,6 @@ export function getPermissions() {
     return fetch(graphqlUrl, options).then((res) => {
       return res.json()
     }).then((response) => {
-      // let permissions = response.data.permissions
-      console.log(response)
       dispatch(setPermissions(response.data.getPersonPermissions.permissions))
     })
   }

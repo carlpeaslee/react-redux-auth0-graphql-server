@@ -1,10 +1,6 @@
 import React, { Component } from 'react'
-import { connect } from 'react-redux'
 import { Form, Field } from 'react-redux-form'
 
-import { createNewBlogPost } from '../../actions/blog'
-
-// import withStyles from 'isomorphic-style-loader/lib/withStyles'
 
 class BlogPostEditor extends Component {
   static propTypes = {
@@ -19,7 +15,7 @@ class BlogPostEditor extends Component {
         <Form
           model='blogPostEditor'
           onSubmit={(blogPostEditor) => {
-            this.props.dispatchCreateNewBlogPost(blogPostEditor)
+            this.props.dCreateNewBlogPost(blogPostEditor)
           }}
         >
           <Field model='blogPostEditor.title'>
@@ -50,29 +46,5 @@ class BlogPostEditor extends Component {
     )
   }
 }
-
-// const selector = (state) => ({ blogPostEditor: state.blogpostEditor })
-//
-// export default connect(selector)(BlogPostEditor);
-
-
-const mapStateToProps = (state) => {
-  return {
-    blogPostEditor: state.blogpostEditor,
-  }
-}
-
-const mapDispatchToProps = (dispatch) => {
-  return {
-    dispatchCreateNewBlogPost: (blogPostEditorForm) => {
-      dispatch(createNewBlogPost(blogPostEditorForm))
-    },
-  }
-}
-
-BlogPostEditor = connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(BlogPostEditor)
 
 export default BlogPostEditor

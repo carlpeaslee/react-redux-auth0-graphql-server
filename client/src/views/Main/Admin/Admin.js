@@ -1,13 +1,13 @@
 import React from 'react'
 
-import BlogContainer from '../../../containers/Blog/BlogContainer'
+import AdminContainer from '../../../containers/Admin/AdminContainer'
 
 
 function Admin () {
   return (
     <div>
       <h2>Admin</h2>
-      <BlogContainer/>
+      <AdminContainer/>
     </div>
   )
 }

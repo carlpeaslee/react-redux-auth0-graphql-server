@@ -15,13 +15,13 @@ import addBlogPost from './mutations/addBlogPost'
 import createPerson from './mutations/createPerson'
 
 import getAllBlogPosts from './queries/getAllBlogPosts'
-import findOnePersonById from './queries/findOnePersonById'
+import getPersonPermissions from './queries/getPersonPermissions'
 
 const RootQuery = new GraphQLObjectType({
   name: 'RootQuery',
   fields: {
     getAllBlogPosts: getAllBlogPosts,
-    findOnePersonById: findOnePersonById,
+    getPersonPermissions: getPersonPermissions,
   }
 })
 

@@ -13,7 +13,7 @@ import Person from '../models/Person'
 import PersonType from '../types/PersonType'
 
 
-const findOnePersonById = {
+const getPersonPermissions = {
   type: PersonType,
   args: {
     personId: {
@@ -24,7 +24,7 @@ const findOnePersonById = {
     return new Promise( (resolve, reject) => {
       console.log('searching using', args.personId)
       Person.findById(args.personId).then( (result) => {
-        console.log('made it into findOnePersonById callback', result)
+        console.log('made it into findOnePersonById callback')
         // if (error) {console.log(error)}
         // if (result) {console.log(result)}
         resolve(result)
@@ -34,4 +34,4 @@ const findOnePersonById = {
 }
 
 
-export default findOnePersonById
+export default getPersonPermissions

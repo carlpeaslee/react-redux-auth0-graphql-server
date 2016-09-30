@@ -13,19 +13,25 @@ export function updateBlogContent() {
     query:'{getAllBlogPosts{title,author,publicationDate,featuredImage,content}}',
   })
 
-  let idToken = store.getState().auth.idToken
-  console.log(idToken)
 
   const options = {
     method: 'POST',
     headers: {
       Accept: 'application/json',
       'content-type': 'application/json',
-      'Authorization': 'Bearer ' + idToken,
+      // 'Authorization': 'Bearer ' + idToken,
     },
     body: body,
     credentials: 'include'
   }
+
+  let idToken = store.getState().auth.idToken
+
+  if(idToken) {
+    options.headers.Authorization = 'Bearer ' + idToken
+  }
+
+
   return function (dispatch) {
     dispatch(requestBlogContent())
 
@@ -62,18 +68,21 @@ export function createNewBlogPost(blogPostEditorForm) {
     query: 'mutation {addBlogPost(title:"'+blogPostEditorForm.title+'", author: "'+blogPostEditorForm.more+'", publicationDate: "'+blogPostEditorForm.publicationDate+'", featuredImage: "'+blogPostEditorForm.featuredImage+'", content:"'+blogPostEditorForm.content+'")}'
   })
 
-  let idToken = store.getState().auth.idToken
-  console.log(idToken)
-
   const options = {
     method: 'POST',
     headers: {
       Accept: 'application/json',
       'content-type': 'application/json',
-      'Authorization': 'Bearer ' + idToken,
+      // 'Authorization': 'Bearer ' + idToken,
     },
     body: body,
     credentials: 'include'
+  }
+
+  let idToken = store.getState().auth.idToken
+
+  if(idToken) {
+    options.headers.Authorization = 'Bearer ' + idToken
   }
 
   return function (dispatch) {

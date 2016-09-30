@@ -5,7 +5,9 @@ import {
   GET_PROFILE,
   SET_PROFILE,
   CHECK_LOCAL_STORAGE,
-  LOGOUT
+  LOGOUT,
+  SET_PERMISSIONS,
+  WAIT_FOR_PERMISSIONS
 } from '../actions/auth'
 
 const INITIAL_AUTH_STATE = {
@@ -38,10 +40,22 @@ export default function auth(state = INITIAL_AUTH_STATE, action) {
         idToken: action.idToken,
       }
     }
+    case SET_PERMISSIONS: {
+      return {
+        ...state,
+        permissions: action.permissions,
+      }
+    }
     case GET_PROFILE: {
       return {
         ...state,
         waitingForProfile: action.waitingForProfile,
+      }
+    }
+    case WAIT_FOR_PERMISSIONS: {
+      return {
+        ...state,
+        waitingForPermissions: action.waitingForPermissions,
       }
     }
     case SET_PROFILE: {
@@ -55,7 +69,8 @@ export default function auth(state = INITIAL_AUTH_STATE, action) {
       return {
         ...state,
         idToken: null,
-        profile: null
+        profile: null,
+        permissions: null
       }
     }
     default:

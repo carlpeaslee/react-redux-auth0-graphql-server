@@ -1,11 +1,11 @@
 import Person from '../models/Person'
 
 
-function PermissionsHandler(user) {
+function PermissionsHandler(personId) {
   return new Promise ( (resolve, reject) => {
     Person.findOrCreate({
       where: {
-        personId: user.personId
+        personId: personId
       },
       defaults: {
         name: '',
@@ -14,7 +14,6 @@ function PermissionsHandler(user) {
       }
     }).spread( (result )=> {
       if ( result ){
-        console.log('result of PermissionsHandler', result.dataValues)
         resolve(result.dataValues)
       }
     })

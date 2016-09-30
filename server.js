@@ -19,13 +19,17 @@ var jwtCheck = jwt({
 
 import PermissionsHandler from './data/mutations/PermissionsHandler'
 
-function permissionsMiddleware(err, req, res, next){
-  const requesterId = req.user.sub || 'unknown'
-  PermissionsHandler(requesterId).then( (person) => {
-    console.log('person.permissions', person)
-    req.permissions = person.permissions
+function permissionsMiddleware(req, res, next){
+  if (!req.user) {
+    req.permissions = [1]
     next()
-  })
+  } else {
+    const requesterId = req.user.sub
+    PermissionsHandler(requesterId).then( (person) => {
+      req.permissions = person.permissions
+      next()
+    })
+  }
 }
 
 app.use('/graphql', [jwtCheck, permissionsMiddleware], expressGraphQL((req) => {

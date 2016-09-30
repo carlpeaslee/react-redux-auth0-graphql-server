@@ -6,11 +6,20 @@ import Admin from './views/Main/Admin/Admin'
 import store from './store'
 
 
-const requireAuth = (nextState, replace) => {
-  if (!store.getState().auth.idToken) {
-    console.log('access denied')
-    replace({ pathname: '/' })
-  }
+const adminOnly = (nextState, replace) => {
+  let permissions = store.getState().auth.permissions
+  if (permissions) {
+    switch (permissions) {
+      case !permissions.includes(0):
+        console.log('access denied')
+        replace({ pathname: '/' })
+        break;
+      default:
+
+    }
+  } else {
+    console.log('looks like you need to login')
+    replace({ pathname: '/' })  }
 }
 
 export const makeRoutes = () => {
@@ -20,7 +29,7 @@ export const makeRoutes = () => {
       <Route
         path="/admin"
         component={Admin}
-        onEnter={requireAuth}
+        onEnter={adminOnly}
       />
     </Route>
   )
